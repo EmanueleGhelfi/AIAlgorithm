@@ -7,9 +7,17 @@ import java.util.List;
  */
 public class GeneralAlgorithm {
 
+    public static Node solveWithBFS(Solver solver,State initialState){
+        return solve(solver,initialState,new FifoFrontier(),new ClosedList());
+    }
+
+    public static Node solveWithDFS(Solver solver,State initialState){
+        return solve(solver,initialState, new LifoFrontier(),new ClosedList());
+    }
 
 
-    public static Node solve(Solver solver, State initialState,Frontier frontier,ClosedListAbstraction closedList){
+
+    private static Node solve(Solver solver, State initialState,Frontier frontier,ClosedListAbstraction closedList){
         Node node = new Node(initialState);
         frontier.addToFrontier(node);
 

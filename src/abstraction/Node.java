@@ -39,4 +39,8 @@ public class Node {
     public int getDistance() {
         return distance;
     }
+
+    public Node getParent() {
+        return parent;
+    }
 }

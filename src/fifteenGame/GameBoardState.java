@@ -77,7 +77,7 @@ public class GameBoardState extends State {
     @Override
     public String toString() {
         String toReturn = "";
-        toReturn+= "{";
+        toReturn+= "{\n";
         for (int i = 0; i< board.length; i++){
             for(int j = 0; j<board[i].length;j++){
                 toReturn+=""+board[i][j]+"\t";
