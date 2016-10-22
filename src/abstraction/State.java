@@ -9,6 +9,5 @@ public abstract class State {
 
     public abstract boolean isGoalState();
 
-    public abstract List<Action> getPossibleAction();
 
 }
