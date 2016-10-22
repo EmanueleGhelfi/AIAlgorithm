@@ -9,6 +9,10 @@ public class ClosedList extends ClosedListAbstraction {
 
     public ArrayList<State> closedList;
 
+    public ClosedList() {
+        this.closedList = new ArrayList<>();
+    }
+
     @Override
     public void add(State state){
         closedList.add(state);

@@ -5,6 +5,8 @@ import abstraction.Solver;
 import abstraction.State;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -40,6 +42,8 @@ public class SolverImpl extends Solver {
         if(matrixPoint.getRow() == gameBoardState.getBoard().length-1)
             possibleActions.remove(downAction);
 
+        Collections.shuffle(possibleActions);
+
         return possibleActions;
 
     }
@@ -62,4 +66,13 @@ public class SolverImpl extends Solver {
 
     }
 
+
+    public GameBoardState shuffle(GameBoardState gameBoardState){
+        for(int i = 0; i< 50; i++){
+            for(Action action: getPossibleAction(gameBoardState)){
+                gameBoardState = (GameBoardState) action.doAction(gameBoardState);
+            }
+        }
+        return gameBoardState;
+    }
 }

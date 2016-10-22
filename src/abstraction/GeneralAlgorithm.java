@@ -9,13 +9,13 @@ public class GeneralAlgorithm {
 
 
 
-    public static void solve(Solver solver, State initialState,Frontier frontier,ClosedListAbstraction closedList){
+    public static Node solve(Solver solver, State initialState,Frontier frontier,ClosedListAbstraction closedList){
         Node node = new Node(initialState);
         frontier.addToFrontier(node);
 
         Node nextNode = frontier.getNode();
 
-        while (!nextNode.getNodeState().isGoalState()){
+        while (nextNode!=null && !nextNode.getNodeState().isGoalState()){
             //expand node
 
             //add to closed list
@@ -30,9 +30,14 @@ public class GeneralAlgorithm {
                 frontier.addToFrontier(frontierNode);
             }
 
-
+            //find next node
+            nextNode = frontier.getNode();
+            while (nextNode!=null && closedList.isInClosedList(nextNode.getNodeState())){
+                //// TODO: 22/10/16  
+                nextNode = frontier.getNode();
+            }
         }
 
-
+        return nextNode;
     }
 }
