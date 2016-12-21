@@ -9,5 +9,6 @@ public abstract class State {
 
     public abstract boolean isGoalState();
 
+    public abstract int heuristicFunction();
 
 }

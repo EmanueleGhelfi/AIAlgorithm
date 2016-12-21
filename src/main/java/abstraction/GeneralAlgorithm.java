@@ -15,6 +15,10 @@ public class GeneralAlgorithm {
         return solve(solver,initialState, new LifoFrontier(),new ClosedList());
     }
 
+    public static Node solveAStar(Solver solver, State initial){
+        return solve(solver,initial,new InformedFrontier(), new ClosedList());
+    }
+
 
 
     private static Node solve(Solver solver, State initialState,Frontier frontier,ClosedListAbstraction closedList){
@@ -35,7 +39,8 @@ public class GeneralAlgorithm {
             for (Action action: actions){
                 State nextState = action.doAction(nextNode.getNodeState());
                 Node frontierNode = new Node(nextState,nextNode,action);
-                frontier.addToFrontier(frontierNode);
+                if(!closedList.isInClosedList(nextState))
+                    frontier.addToFrontier(frontierNode);
             }
 
             //find next node

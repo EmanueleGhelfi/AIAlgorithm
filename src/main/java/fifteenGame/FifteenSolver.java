@@ -25,7 +25,7 @@ public class FifteenSolver {
 
         System.out.println("Initial State:\n "+ state.toString());
 
-        Node finalNode = GeneralAlgorithm.solveWithDFS(solver,state);
+        Node finalNode = GeneralAlgorithm.solveAStar(solver,state);
         Node currentNode = finalNode;
 
         System.out.println("Solved\n "+ finalNode.getNodeState().toString());

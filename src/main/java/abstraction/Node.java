@@ -3,7 +3,7 @@ package abstraction;
 /**
  * Created by emanueleghelfi on 22/10/16.
  */
-public class Node {
+public class Node implements Comparable {
 
     //state that represents the node
     private State nodeState;
@@ -42,5 +42,10 @@ public class Node {
 
     public Node getParent() {
         return parent;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }

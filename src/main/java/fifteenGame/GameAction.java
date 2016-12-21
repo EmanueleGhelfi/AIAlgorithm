@@ -10,6 +10,7 @@ public abstract class GameAction extends Action {
 
     protected int horizontalSwitch;
     protected int verticalSwitch;
+    private int cost = 1;
     
     @Override
     public State doAction(State s) {
@@ -25,7 +26,7 @@ public abstract class GameAction extends Action {
 
     @Override
     public int getCost() {
-        return 1;
+        return cost;
     }
 
     @Override

@@ -12,9 +12,11 @@ import java.util.List;
 public class GameBoardState extends State {
 
     private int[][] board;
+    private int heuristicFunctionValue;
 
     public GameBoardState(int[][] board) {
         this.board = board;
+        this.heuristicFunctionValue = calculateHeuristic();
     }
 
     public int[][] getBoard() {
@@ -28,7 +30,6 @@ public class GameBoardState extends State {
 
         return toReturn;
 
-
     }
 
     @Override
@@ -40,20 +41,44 @@ public class GameBoardState extends State {
         for(int row = 0; row<board.length; row++){
             for(int column = 0; column<board[row].length; column++){
 
-                // if last cell ret ok
+                // if last cell return ok
                 if(row == board.length-1 && column == board[row].length-1)
                     return true;
+
+                //get next cell
                 int nextRow = column == board[row].length-1 ? row+1 : row;
                 int nextCol = column == board[row].length-1 ? 0 : column+1;
 
                 if(nextRow == board.length -1 && nextCol == board[nextRow].length-1)
                     return true;
+                //ordered?
                 if(board[row][column] + 1 != board[nextRow][nextCol])
                     return false;
             }
         }
 
         return true;
+    }
+
+    //Using manhattan distance
+    @Override
+    public int heuristicFunction() {
+        return heuristicFunctionValue;
+    }
+
+    private int calculateHeuristic(){
+        int heuristicFunction=0;
+        for(int row = 0; row<board.length; row++){
+            for(int column = 0; column<board[row].length;column++){
+                if(board[row][column]!=0){
+                    int goalCol = board[row][column] % board[row].length;
+                    int goalRow = board[row][column]/board.length;
+                    heuristicFunction+= Math.abs(row-goalRow);
+                    heuristicFunction+= Math.abs(column-goalCol);
+                }
+            }
+        }
+        return heuristicFunction;
     }
 
     @Override
